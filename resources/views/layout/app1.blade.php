@@ -80,6 +80,8 @@
 
    @include('include.footer')
   
+
+   {{-- TODO: appel a la methodes asset() au niveau de chaque sources --}}
     <script src="frontend/js/jquery.min.js"></script>
     <script src="frontend/js/jquery-migrate-3.0.1.min.js"></script>
     <script src="frontend/js/popper.min.js"></script>

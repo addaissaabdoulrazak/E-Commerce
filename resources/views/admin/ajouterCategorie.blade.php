@@ -1,6 +1,6 @@
-@extends("layout.appAdminDashboard")
+@extends("layout.appAdminDashboard") 
 @section('title')
-    Ajouter produits
+    Ajouter Categorie
 @endsection
 @section("contenu")
 {{-- Start content --}}
@@ -11,16 +11,34 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Ajouter Categorie</h4>
+          @if(Session::has('status'))
+              <div class="alert alert-success">
+                     {{session::get("status")}}
+              </div>
+          @endif
+          @if(count($errors)>0)
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{$error}}</li>
+              @endforeach
+              
+            </ul>
+
+          </div>
+          @endif
 
           {!!Form::open(['action' => 'App\Http\Controllers\CategorieController@save', 'method' => 'POST', 'class'=>'cmxform', 'id'=>'commentForm'])!!}
-          
+           
               {{-- !! IMPORTANT --}}
               @csrf
               {{-- !! End  --}}
            
               <div class="form-group">
-                <label for="cname">Name (required, at least 2 characters)</label>
-                <input id="cname" class="form-control" name="name" minlength="2" type="text" required>
+                {{Form::label('', 'Nom de la catégorie',['for'=>'cname'])}}
+                {{Form::text('category_name','', ['class' =>'form-control', 'id'=>'cname'])}} 
+                {{-- <label for="cname">Name (required, at least 2 characters)</label>
+                <input id="cname" class="form-control" name="name" minlength="2" type="text" required> --}}
               </div>
 
               {{-- <div class="form-group">
@@ -35,8 +53,8 @@
                 <label for="ccomment">Your comment (required)</label>
                 <textarea id="ccomment" class="form-control" name="comment" required></textarea>
               </div> --}}
-              <input class="btn btn-primary" type="submit" value="Submit">
-      
+              {{-- <input class="btn btn-primary" type="submit" value="Submit"> --}}
+             {{Form::submit('Ajouter', ['class'=>'btn btn-primary ' ])}}
             {!!Form::close()!!}
         </div>
       </div>

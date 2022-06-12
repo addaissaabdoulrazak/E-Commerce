@@ -31,7 +31,11 @@
        {{-- End Nav Bar --}}
 
       {{-- Start content --}}
+      <div class="content-wrapper">
+        <div class="row">
           @yield('contenu')
+        </div>
+      </div>
       {{-- End content --}}
 
 

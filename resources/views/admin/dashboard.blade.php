@@ -1,6 +1,6 @@
 @extends('layout.appAdminDashboard')
 @section('title') 
-!!!!
+Dashboard
 @endsection
 @section('contenu')
 <div class="main-panel">

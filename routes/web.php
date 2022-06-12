@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\clientController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\SliderController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -44,8 +48,30 @@ route::get('/administrateur', "App\Http\Controllers\AdminController@dashboard");
 
 //*--======================================= Gestion des Categories ===============================--
 
-Route::prefix("Categories")->group(function(){
+Route::prefix("categorie")->group(function(){
 
     route::get('/ajouter',[CategorieController::class,'ajouter']);
-    route::get('/save',[CategorieController::class,'save'])->name('save');
+    route::get('/edit/{id}', [CategorieController::class, 'edit'])->name('categorie.edit');
+    route::post('/update', [CategorieController::class, 'update'])->name('categorie.update');
+    route::post('/save',[CategorieController::class,'save'])->name('save')->name('Produit_name');
+    route::get('/categories',[CategorieController::class,'categorie']);
+});
+
+
+//*--======================================= Gestion des Produits ===============================--
+Route::prefix("produit")->group(function(){
+    route::get('/ajouter',[ProduitController::class,'ajouter']);
+    route::post('/save',[ProduitController::class,'save']);
+    route::get('/produits',[ProduitController::class,'produits']);
+});
+
+//*--======================================= Gestion des Slider ===============================--
+Route::prefix("slider")->group(function(){
+    route::get('/ajouter',[SliderController::class,'ajouter']);
+    route::post('/save',[SliderController::class,'save']);
+    route::get('/sliders',[SliderController::class,'sliders']);
+});
+//*--======================================= Gestion des Commandes ===============================--
+route::prefix('commande')->group(function(){
+    route::get('/commandes', [AdminController::class,'commandes']);
 });
